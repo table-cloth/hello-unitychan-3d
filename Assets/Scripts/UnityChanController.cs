@@ -11,6 +11,11 @@ public class UnityChanController : MonoBehaviour {
         this.GetComponent<Animator>().SetTrigger("Jump");
     }
 
+    public void OnCollidedWithObstacle()
+    {
+        this.GetComponent<Animator>().SetTrigger("Collision");
+    }
+
     /// <summary>
     /// Called on the call change face.
     /// </summary>
