@@ -1,0 +1,17 @@
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/obj/Debug/Assembly-CSharp.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/UnityEngine.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/UnityEditor.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/Mono.Cecil.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/Unity.DataContract.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/nomura/Documents/workspace/tablecloth/HelloUnityChan/Temp/bin/Debug/Mono.Cecil.Mdb.dll
