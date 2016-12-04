@@ -8,6 +8,14 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
     [SerializeField]
     private Transform unityChanObject;
 
+    private int currentLane = 0;
+
+    private Vector3 moveDist;
+    private Vector3 moveDestinationPos;
+    private float moveActionSec;
+    private float moveRemainSec;
+    private bool isMovingLane = true;
+
     public override void Update()
     { 
         if (GameManager.Instance.IsGameOver)
@@ -25,6 +33,20 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
                 unityChanObject.localRotation.y,
                 0.0f
             );
+
+        if (isMovingLane)
+        {
+            moveRemainSec -= Time.deltaTime;
+            if (moveRemainSec > 0.0f)
+            {
+                unityChanObject.transform.localPosition += (moveDist * Time.deltaTime / moveActionSec);
+            }
+            else
+            {
+                unityChanObject.transform.localPosition = moveDestinationPos;
+                isMovingLane = false;
+            }
+        }
     }
 
     /// <summary>
@@ -32,7 +54,7 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
     /// </summary>
     private void HandleUserActions()
     {
-        // Right click
+        // Jump
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -42,9 +64,28 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
             {
                 if (raycastHit.transform.gameObject.tag.Contains(Const.Tag.UnityChan))
                 {
-                    OnTappedUnityChan();
+                    JumpUnityChan(0);
                 }
             }
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            JumpUnityChan(0);
+        }
+        // Slide
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            // TODO slide
+        }
+        // Move Left
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            JumpUnityChan(-1);
+        }
+        // Move Right
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            JumpUnityChan(1);
         }
     }
 
@@ -69,10 +110,21 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
     }
 
     /// <summary>
-    /// Called when unity chan is tapped
+    /// Jumps the unity chan.
     /// </summary>
-    public void OnTappedUnityChan()
+    /// <param name="laneChange">Lane change.</param>
+    public void JumpUnityChan(int laneChange)
     {
+        if (isMovingLane)
+        {
+            return;
+        }
+        isMovingLane = true;
+        moveDist.x = laneChange * 1.0f;
+        moveActionSec = 1.0f;
+        moveRemainSec = moveActionSec;
+
+        moveDestinationPos = unityChanObject.transform.position + moveDist;
         animator.SetTrigger("Jump");
     }
 
