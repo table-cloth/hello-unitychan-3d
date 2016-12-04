@@ -6,12 +6,18 @@ public class ObstacleController : BaseController {
 
     public event Action CollidedWithUnityChan = delegate {};
     private bool isMoving = true;
+    private Vector3 moveSpeed = new Vector3(0.0f, 0.0f, 6.0f);
 
     public override void Update()
     {
+        if (IsGameOver())
+        {
+            return;
+        }
+
         if (this.isMoving)
         {
-            Vector3 diff = new Vector3(0.0f, 0.0f, 1.0f) * Time.deltaTime;
+            Vector3 diff = moveSpeed * Time.deltaTime;
             this.gameObject.transform.position = this.gameObject.transform.position - diff;
         }
 
@@ -23,10 +29,15 @@ public class ObstacleController : BaseController {
 
     void OnCollisionEnter(Collision collision)
     {
-        this.isMoving = false;
-        if(collision.gameObject.tag.Contains("UnityChan"))
+        if (IsGameOver())
+        {
+            return;
+        }
+
+        if(collision.gameObject.tag.Contains(Const.Tag.UnityChan))
 		{
-            this.CollidedWithUnityChan();			
+            this.isMoving = false;
+            CollidedWithUnityChan();
 		}
     }
 }

@@ -5,8 +5,8 @@ public class GameManager : BaseManager<GameManager> {
 
     public bool IsGameOver { get; set; }
 
-    [SerializeField]
-    private UnityChanController unityChanController;
+//    [SerializeField]
+//    private UnityChanManager unityChanController;
 
     /// <summary>
     /// Private constructor
@@ -47,14 +47,6 @@ public class GameManager : BaseManager<GameManager> {
 //    }
 
 
-//    private void InistantiateObstacle()
-//    {
-//        GameObject obstacle = Instantiate(this.obstaclePrefab);
-//        ObstacleController obstacleController = obstacle.GetComponent<ObstacleController>();
-//
-//        obstacleController.CollidedWithUnityChan += this.ObstacleCollidedWithUnityChan;
-//        obstacle.transform.position = new Vector3(0.0f, 0.0f, ObstacleStartPosZ);
-//    }
 //
 //    private void ObstacleCollidedWithUnityChan()
 //    {
