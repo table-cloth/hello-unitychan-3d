@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/HelloUnityChan.unity
+- path: Assets/Scenes/HelloUnityChan.unity
   isLoaded: 1
   isActive: 1

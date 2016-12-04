@@ -1,8 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/README_SD_UnityChan.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UnityChanController.cs">
     <Files>
-      <File FileName="Assets/README_SD_UnityChan.txt" Line="1" Column="1" />
+      <File FileName="Assets/UnityChan/Scripts/CameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets/UnityChan/Scripts/FaceUpdate.cs" Line="69" Column="9" />
+      <File FileName="Assets/UnityChan/Scripts/SpringManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UnityChanController.cs" Line="16" Column="60" />
+      <File FileName="Assets/Scripts/RunUnityChanController.cs" Line="50" Column="1" />
+      <File FileName="Assets/Scripts/ObstacleController.cs" Line="29" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

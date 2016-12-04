@@ -45,9 +45,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\ObstacleController.cs" />
-     <Compile Include="Assets\Scripts\RunUnityChanController.cs" />
-     <Compile Include="Assets\Scripts\UnityChanController.cs" />
+     <Compile Include="Assets\Scripts\Controller\BaseController.cs" />
+     <Compile Include="Assets\Scripts\Controller\ObstacleController.cs" />
+     <Compile Include="Assets\Scripts\Controller\UnityChanController.cs" />
+     <Compile Include="Assets\Scripts\Manager\BaseManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\RouteObjectManager.cs" />
+     <Compile Include="Assets\Scripts\Util\Const.cs" />
      <Compile Include="Assets\UnityChan\Scripts\AutoBlink.cs" />
      <Compile Include="Assets\UnityChan\Scripts\AutoBlinkforSD.cs" />
      <Compile Include="Assets\UnityChan\Scripts\CameraController.cs" />
