@@ -134,6 +134,14 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
             return;
         }
 
+        int destLane = currentLane + laneChange;
+        if (GameManager.Instance.LaneMin > destLane
+           || destLane > GameManager.Instance.LaneMax)
+        {
+            return;
+        }
+             
+
         isMovingLane = true;
         moveDist.x = laneChange * 1.0f;
         moveActionSec = animLengthJump;
