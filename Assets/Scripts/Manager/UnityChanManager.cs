@@ -58,6 +58,7 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
             {
                 unityChanObject.transform.localPosition = moveDestinationPos;
                 isMovingLane = false;
+                animator.Play(Const.AnimatorState.Run);
             }
         }
     }
@@ -132,6 +133,7 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
         {
             return;
         }
+
         isMovingLane = true;
         moveDist.x = laneChange * 1.0f;
         moveActionSec = animLengthJump;
@@ -139,6 +141,8 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
 
         moveDestinationPos = unityChanObject.transform.position + moveDist;
         animator.Play(Const.AnimatorState.Jump2Top);
+
+        currentLane += laneChange;
     }
 
     /// <summary>
@@ -147,6 +151,8 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
     public void OnCollidedWithObstacle()
     {
         GameManager.Instance.SetIsGameOver(true);
-        animator.Play(Const.AnimatorState.FallBack);
+        animator.CrossFade(Const.AnimatorState.FallBack, 0.0f, 0, 0.1f);
+
+//        animator.Play(Const.AnimatorState.FallBack);
     }
 }

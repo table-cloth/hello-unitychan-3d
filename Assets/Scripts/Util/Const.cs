@@ -24,6 +24,7 @@ public class Const
 
     public class AnimatorState
     {
+        public const string Run = "Running";
         public const string Jump2Top = "ToTop";
         public const string FallBack = "GoDown";
 
