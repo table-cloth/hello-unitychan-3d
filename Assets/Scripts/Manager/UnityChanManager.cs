@@ -16,6 +16,19 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
     private float moveRemainSec;
     private bool isMovingLane = true;
 
+    private float animLengthJump;
+
+    public void Awake()
+    {
+        float speedJump2Top = 2.0f;
+        float speedJump2Ground = 1.0f;
+        float exitTimeJump2Ground = 0.25f;
+
+        animLengthJump = 
+            AnimUtil.GetAnimationClipLength(animator, Const.Animation.Jump2Top) / speedJump2Top
+            + AnimUtil.GetAnimationClipLength(animator, Const.Animation.Jump2Ground) / speedJump2Ground * exitTimeJump2Ground;
+    }
+        
     public override void Update()
     { 
         if (GameManager.Instance.IsGameOver)
@@ -121,11 +134,11 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
         }
         isMovingLane = true;
         moveDist.x = laneChange * 1.0f;
-        moveActionSec = 1.0f;
+        moveActionSec = animLengthJump;
         moveRemainSec = moveActionSec;
 
         moveDestinationPos = unityChanObject.transform.position + moveDist;
-        animator.SetTrigger("Jump");
+        animator.Play(Const.AnimatorState.Jump2Top);
     }
 
     /// <summary>
@@ -134,6 +147,6 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
     public void OnCollidedWithObstacle()
     {
         GameManager.Instance.SetIsGameOver(true);
-        animator.SetTrigger("Collision");
+        animator.Play(Const.AnimatorState.FallBack);
     }
 }

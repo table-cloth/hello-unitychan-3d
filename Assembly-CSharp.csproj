@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
      <Compile Include="Assets\Scripts\Manager\RouteObjectManager.cs" />
      <Compile Include="Assets\Scripts\Manager\UnityChanManager.cs" />
+     <Compile Include="Assets\Scripts\Util\AnimUtil.cs" />
      <Compile Include="Assets\Scripts\Util\Const.cs" />
      <Compile Include="Assets\UnityChan\Scripts\AutoBlink.cs" />
      <Compile Include="Assets\UnityChan\Scripts\AutoBlinkforSD.cs" />
