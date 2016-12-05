@@ -8,6 +8,27 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
     [SerializeField]
     private Transform unityChanObject;
 
+    private int currentLane = 0;
+
+    private Vector3 moveDist;
+    private Vector3 moveDestinationPos;
+    private float moveActionSec;
+    private float moveRemainSec;
+    private bool isMovingLane = true;
+
+    private float animLengthJump;
+
+    public void Awake()
+    {
+        float speedJump2Top = 2.0f;
+        float speedJump2Ground = 1.0f;
+        float exitTimeJump2Ground = 0.25f;
+
+        animLengthJump = 
+            AnimUtil.GetAnimationClipLength(animator, Const.Animation.Jump2Top) / speedJump2Top
+            + AnimUtil.GetAnimationClipLength(animator, Const.Animation.Jump2Ground) / speedJump2Ground * exitTimeJump2Ground;
+    }
+        
     public override void Update()
     { 
         if (GameManager.Instance.IsGameOver)
@@ -25,6 +46,21 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
                 unityChanObject.localRotation.y,
                 0.0f
             );
+
+        if (isMovingLane)
+        {
+            moveRemainSec -= Time.deltaTime;
+            if (moveRemainSec > 0.0f)
+            {
+                unityChanObject.transform.localPosition += (moveDist * Time.deltaTime / moveActionSec);
+            }
+            else
+            {
+                unityChanObject.transform.localPosition = moveDestinationPos;
+                isMovingLane = false;
+                animator.Play(Const.AnimatorState.Run);
+            }
+        }
     }
 
     /// <summary>
@@ -32,7 +68,7 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
     /// </summary>
     private void HandleUserActions()
     {
-        // Right click
+        // Jump
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -42,9 +78,28 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
             {
                 if (raycastHit.transform.gameObject.tag.Contains(Const.Tag.UnityChan))
                 {
-                    OnTappedUnityChan();
+                    JumpUnityChan(0);
                 }
             }
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            JumpUnityChan(0);
+        }
+        // Slide
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            // TODO slide
+        }
+        // Move Left
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            JumpUnityChan(-1);
+        }
+        // Move Right
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            JumpUnityChan(1);
         }
     }
 
@@ -69,11 +124,33 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
     }
 
     /// <summary>
-    /// Called when unity chan is tapped
+    /// Jumps the unity chan.
     /// </summary>
-    public void OnTappedUnityChan()
+    /// <param name="laneChange">Lane change.</param>
+    public void JumpUnityChan(int laneChange)
     {
-        animator.SetTrigger("Jump");
+        if (isMovingLane)
+        {
+            return;
+        }
+
+        int destLane = currentLane + laneChange;
+        if (GameManager.Instance.LaneMin > destLane
+           || destLane > GameManager.Instance.LaneMax)
+        {
+            return;
+        }
+             
+
+        isMovingLane = true;
+        moveDist.x = laneChange * 1.0f;
+        moveActionSec = animLengthJump;
+        moveRemainSec = moveActionSec;
+
+        moveDestinationPos = unityChanObject.transform.position + moveDist;
+        animator.Play(Const.AnimatorState.Jump2Top);
+
+        currentLane += laneChange;
     }
 
     /// <summary>
@@ -82,6 +159,8 @@ public class UnityChanManager : BaseManager<UnityChanManager> {
     public void OnCollidedWithObstacle()
     {
         GameManager.Instance.SetIsGameOver(true);
-        animator.SetTrigger("Collision");
+        animator.CrossFade(Const.AnimatorState.FallBack, 0.0f, 0, 0.1f);
+
+//        animator.Play(Const.AnimatorState.FallBack);
     }
 }

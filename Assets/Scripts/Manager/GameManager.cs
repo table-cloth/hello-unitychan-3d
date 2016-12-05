@@ -4,6 +4,9 @@ using System.Collections;
 public class GameManager : BaseManager<GameManager> {
 
     public bool IsGameOver { get; set; }
+    public int LaneMax { get; set; }
+    public int LaneMin { get; set; }
+
 
 //    [SerializeField]
 //    private UnityChanManager unityChanController;
@@ -14,6 +17,8 @@ public class GameManager : BaseManager<GameManager> {
     public GameManager() : base()
     {
         IsGameOver = false;
+        LaneMin = -1;
+        LaneMax = 1;
     }
 
     /// <summary>
